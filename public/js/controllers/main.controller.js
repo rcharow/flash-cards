@@ -1,4 +1,4 @@
-app.controller('MainController', function ($scope, FlashCardsFactory, ScoreFactory) {
+app.controller('MainController', function ($scope, FlashCardsFactory, ScoreFactory, TemplatesFactory) {
 	// $scope.flashCards = FlashCardsFactory;
 	
 
@@ -10,11 +10,13 @@ app.controller('MainController', function ($scope, FlashCardsFactory, ScoreFacto
 	    'All Categories'
 	];
 
+    $scope.templates = TemplatesFactory;
+
 	var setFlashCards = function(cardPromise){
-		console.log(cardPromise)
+		
 		cardPromise.then(function(flashCards){
-		$scope.flashCards = flashCards.data
-	})
+			$scope.flashCards = flashCards.data
+		})
 	}
 
 	setFlashCards(FlashCardsFactory.getFlashCards())
@@ -33,14 +35,13 @@ app.controller('MainController', function ($scope, FlashCardsFactory, ScoreFacto
 		if (!flashCard.answered) {
 			flashCard.answered = true;
 			flashCard.answeredCorrectly = answer.correct;
+		
+			if(flashCard.answeredCorrectly===true)
+				ScoreFactory.correct++
+			else
+				ScoreFactory.incorrect++
 		}
 
-		if(flashCard.answeredCorrectly===true)
-			ScoreFactory.correct++
-		else
-			ScoreFactory.incorrect++
-
-		console.log(ScoreFactory)
 	}
 
 
