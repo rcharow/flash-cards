@@ -11,6 +11,11 @@
   .category-button.active {
     background: gainsboro; }
 
+.category-buttons {
+  margin: 0 auto;
+  width: 600px;
+  text-align: center; }
+
 .flash-card {
   width: 60%;
   height: 400px;
@@ -76,3 +81,5 @@
         margin-right: 0; }
       #statistics #scoreboard h3 span {
         font-weight: bold; }
+
+/*# sourceMappingURL=style.css.map */
